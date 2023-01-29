@@ -1,7 +1,35 @@
 using System;
 using System.IO; 
 
-class Program
+public class Entry 
+{
+    public string _question;
+    public string _response;
+    public string _date;
+
+    public void Display()
+    {
+        Console.WriteLine($"{_question}, {_response}, {_date}");
+    }
+}
+
+public class Journal
+{
+    // public string _name;
+    public List<Entry> _entries = new List<Entry>();
+
+    public void Display()
+    {
+        // Console.WriteLine($"Name: {_name}");
+        // Console.WriteLine("entry:");
+
+        foreach (Entry entry in _entries)
+        {
+            entry.Display();
+        }
+    }
+}
+public class Program
 {
     static void Main(string[] args)
     {
@@ -13,13 +41,13 @@ class Program
 
             var random = new Random();
             var list = new List<string>{ 
-                "Who was the most interesting person I interacted with today?",
-                "What was the best part of my day?",
-                "How did I see the hand of the Lord in my life today?",
-                "What was the strongest emotion I felt today?",
-                "If I had one thing I could do over today, what would it be?"};
+                "What goal did I miss?",
+                "what would have done better?",
+                "what was your favorite thing today?",
+                "What did you learn from your scriptures study?",
+                "What new thought do I have for tomorrow?"};
 
-            var prompts = new List<string> {};
+            var prompts = new List<string> ();
 
             Console.WriteLine("");
             Console.WriteLine("1. Write");
@@ -32,22 +60,36 @@ class Program
             sbyte option = sbyte.Parse(input);
 
             if (option == 1) //Write
-            {
+            {   
+                Entry response1 = new Entry();
+                
                 int index = random.Next(list.Count);
                 Console.WriteLine(list[index]);
-                string prompt = Console.ReadLine();
-                prompts.Add(prompt);
+                response1._question = list[index];
+
+                response1._response = Console.ReadLine();
+
+                DateTime theCurrentTime = DateTime.Now;
+                response1._date = theCurrentTime.ToShortDateString();
+
+                Journal j = new Journal();
+
+                j._entries.Add(response1);
+                j.Display();
 
             }
 
             if (option == 2) //Display
             {
+
                 Console.WriteLine("What is the filename?");
                 string filename = Console.ReadLine();
-                foreach (string line in System.IO.File.ReadLines(filename))
-                {  
-                    System.Console.WriteLine(line);  
-                }  
+                string[] lines = System.IO.File.ReadAllLines(filename);
+
+                foreach (string line in lines)
+                {
+                    Console.WriteLine(line);
+                }
             }
 
             if (option == 3) //Load
@@ -56,20 +98,20 @@ class Program
                 string filename = Console.ReadLine();
                 string[] lines = System.IO.File.ReadAllLines(filename);
 
-                foreach (string line in lines)
-                {
-                    string[] parts = line.Split(",");
-                }
+
             }
 
             if (option == 4) //Save
             {
+
                 Console.WriteLine("What is the filename?");
                 string fileName = Console.ReadLine();
 
+
+                Entry _entries = new Entry();
                 using (StreamWriter outputFile = new StreamWriter(fileName))
                 {
-                    outputFile.WriteLine(prompts);
+                    outputFile.WriteLine(_entries);
                 }
             }
 
