@@ -7,7 +7,7 @@ public class Fraction
 
     public Fraction()
     {
-        // Default to 1/1
+
         _top = 1;
         _bottom = 1;
     }
@@ -24,18 +24,14 @@ public class Fraction
         _bottom = bottom;
     }
 
-    public string GetFractionString()
+    public string GetFractionString(string _top, string _bottom)
     {
-        // Notice that this is not stored as a member variable.
-        // Is is just a temporary, local variable that will be recomputed each time this is called.
         string text = $"{_top}/{_bottom}";
         return text;
     }
 
     public double GetDecimalValue()
     {
-        // Notice that this is not stored as a member variable.
-        // Is will be recomputed each time this is called.
         return (double)_top / (double)_bottom;
     }
 }
