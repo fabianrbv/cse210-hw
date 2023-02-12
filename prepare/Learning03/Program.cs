@@ -4,6 +4,11 @@ class Program
 {
     static void Main(string[] args)
     {
+        // Console.WriteLine("Enter the top number");
+        // string _top = Console.ReadLine();
+        // Console.WriteLine("Enter the bottom number");
+        // string _bottom = Console.ReadLine();
+        
         Fraction f1 = new Fraction();
         Console.WriteLine(f1.GetFractionString());
         Console.WriteLine(f1.GetDecimalValue());
