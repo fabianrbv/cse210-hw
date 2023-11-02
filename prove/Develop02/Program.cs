@@ -15,17 +15,16 @@ public class Entry
 
 public class Journal
 {
-    // public string _name;
-    public List<Entry> _entries = new List<Entry>();
+    public List<string> thoughts = new List<string>();
 
     public void Display()
     {
         // Console.WriteLine($"Name: {_name}");
         // Console.WriteLine("entry:");
 
-        foreach (Entry entry in _entries)
+        foreach (string i in thoughts)
         {
-            entry.Display();
+            Console.WriteLine(i);
         }
     }
 }
@@ -74,7 +73,7 @@ public class Program
 
                 Journal j = new Journal();
 
-                j._entries.Add(response1);
+                j.thoughts.Add(response1);
                 j.Display();
 
             }
