@@ -24,7 +24,7 @@ public class Fraction
         _bottom = bottom;
     }
 
-    public string GetFractionString(string _top, string _bottom)
+    public string GetFractionString()
     {
         string text = $"{_top}/{_bottom}";
         return text;
