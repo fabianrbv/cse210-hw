@@ -53,7 +53,7 @@ public class Program
                 "what was your favorite thing today?",
                 "What did you learn from your scriptures study?",
                 "What new thought do I have for tomorrow?"};
-
+                
             Console.WriteLine("");
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
