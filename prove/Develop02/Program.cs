@@ -18,7 +18,8 @@ public class Entry
 public class Journal
 {
     public List<Entry> Entries { get; set; }
-    public string Name { get; set; }    public Journal()
+    public string Name { get; set; }    
+    public Journal()
     {
         Entries = new List<Entry>();
     }
