@@ -95,7 +95,14 @@ public class Program
 
                 foreach (string line in lines)
                 {
-                    Console.WriteLine(line);
+                    string[] entryParts = line.Split(',');
+                    Entry entry = new Entry
+                    {
+                        Date = entryParts[0].Trim(),
+                        Question = entryParts[1].Trim(),
+                        Response = entryParts[2].Trim()
+                    };
+                    journal.Entries.Add(entry);
                 }
             }
 
