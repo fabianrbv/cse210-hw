@@ -80,8 +80,6 @@ public class Program
                 Journal j = new Journal();
 
                 j.Entries.Add(response1);
-                j.Display();
-
             }
 
             if (option == 2) //Display
