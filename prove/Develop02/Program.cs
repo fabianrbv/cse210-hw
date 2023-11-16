@@ -11,14 +11,13 @@ public class Entry
 
     public void Display()
     {
-        Console.WriteLine($"{Question}, {Response}, {Date}");
+        Console.WriteLine($"Date: {Date} - Prompt: {Question} {Response}");
     }
 }
 
 public class Journal
 {
     public List<Entry> Entries { get; set; }
-    public string Name { get; set; }    
     public Journal()
     {
         Entries = new List<Entry>();
@@ -26,9 +25,6 @@ public class Journal
 
     public void Display()
     {
-        Console.WriteLine("Name: {0}", Name);
-        Console.WriteLine("entry:");
-
         foreach (var entry in Entries)
         {
             entry.Display();
