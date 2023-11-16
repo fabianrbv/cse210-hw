@@ -34,6 +34,8 @@ public class Journal
 
 public class Program
 {
+    static Journal journal = new Journal();
+
     static void Main(string[] args)
     {
         Console.WriteLine("Welcome to the Journal Program!");
@@ -50,14 +52,12 @@ public class Program
                 "What did you learn from your scriptures study?",
                 "What new thought do I have for tomorrow?"};
 
-            var prompts = new List<string> ();
-
             Console.WriteLine("");
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
             Console.WriteLine("3. Load");
             Console.WriteLine("4. Save");
-            Console.WriteLine("5. Quit");
+            Console.WriteLine("5. Quit ");
             Console.Write("What do you want to do? ");
             string input = Console.ReadLine();
             int option = int.Parse(input);
@@ -77,15 +77,12 @@ public class Program
                 DateTime theCurrentTime = DateTime.Now;
                 response1.Date = theCurrentTime.ToShortDateString();
 
-                Journal j = new Journal();
-
-                j.Entries.Add(response1);
+                journal.Entries.Add(response1);
             }
 
             if (option == 2) //Display
             {
-                Journal j = new Journal();
-                j.Display();
+                journal.Display();
             }
 
             if (option == 3) //Load
@@ -105,11 +102,9 @@ public class Program
                 Console.WriteLine("What is the filename?");
                 string fileName = Console.ReadLine();
 
-                Journal j = new Journal();
-
                 using (StreamWriter outputFile = new StreamWriter(fileName))
                 {
-                    foreach (var entry in j.Entries)
+                    foreach (var entry in journal.Entries)
                     {
                         outputFile.WriteLine($"{entry.Question}, {entry.Response}, {entry.Date}");
                     }
