@@ -11,7 +11,9 @@ public class Entry
 
     public void Display()
     {
-        Console.WriteLine($"Date: {Date} - Prompt: {Question} {Response}");
+        Console.WriteLine($"Date: {Date} - Prompt: {Question}");
+        Console.WriteLine(Response);
+
     }
 }
 
@@ -106,7 +108,7 @@ public class Program
                 {
                     foreach (var entry in journal.Entries)
                     {
-                        outputFile.WriteLine($"{entry.Question}, {entry.Response}, {entry.Date}");
+                        outputFile.WriteLine($"{entry.Date}, {entry.Question}, {entry.Response}");
                     }
                 }
             }
