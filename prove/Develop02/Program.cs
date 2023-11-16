@@ -1,33 +1,40 @@
 using System;
-using System.IO; 
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
-public class Entry 
+public class Entry
 {
-    public string _question;
-    public string _response;
-    public string _date;
+    public string Question { get; set; }
+    public string Response { get; set; }
+    public string Date { get; set; }
 
     public void Display()
     {
-        Console.WriteLine($"{_question}, {_response}, {_date}");
+        Console.WriteLine($"{Question}, {Response}, {Date}");
     }
 }
 
 public class Journal
 {
-    public List<string> thoughts = new List<string>();
+    public List<Entry> Entries { get; set; }
+    public string Name { get; set; }    public Journal()
+    {
+        Entries = new List<Entry>();
+    }
 
     public void Display()
     {
-        // Console.WriteLine($"Name: {_name}");
-        // Console.WriteLine("entry:");
+        Console.WriteLine("Name: {0}", Name);
+        Console.WriteLine("entry:");
 
-        foreach (string i in thoughts)
+        foreach (var entry in Entries)
         {
-            Console.WriteLine(i);
+            entry.Display();
         }
     }
 }
+
 public class Program
 {
     static void Main(string[] args)
@@ -35,9 +42,9 @@ public class Program
         Console.WriteLine("Welcome to the Journal Program!");
         Console.WriteLine("Please select one of the following choices:");
 
-        int i=0;
-        while(i==0){
-
+        int i = 0;
+        while (i == 0)
+        {
             var random = new Random();
             var list = new List<string>{ 
                 "What goal did I miss?",
@@ -56,31 +63,38 @@ public class Program
             Console.WriteLine("5. Quit");
             Console.Write("What do you want to do? ");
             string input = Console.ReadLine();
-            sbyte option = sbyte.Parse(input);
+            int option = int.Parse(input);
 
             if (option == 1) //Write
             {   
                 Entry response1 = new Entry();
                 
-                int index = random.Next(list.Count);
-                Console.WriteLine(list[index]);
-                response1._question = list[index];
+                int index = random.Next(0, list.Count);
+                string randomItem = list[index];
 
-                response1._response = Console.ReadLine();
+                Console.WriteLine(randomItem);
+                response1.Question = randomItem;
+
+                response1.Response = Console.ReadLine();
 
                 DateTime theCurrentTime = DateTime.Now;
-                response1._date = theCurrentTime.ToShortDateString();
+                response1.Date = theCurrentTime.ToShortDateString();
 
                 Journal j = new Journal();
 
-                j.thoughts.Add(response1);
+                j.Entries.Add(response1);
                 j.Display();
 
             }
 
             if (option == 2) //Display
             {
+                Journal j = new Journal();
+                j.Display();
+            }
 
+            if (option == 3) //Load
+            {
                 Console.WriteLine("What is the filename?");
                 string filename = Console.ReadLine();
                 string[] lines = System.IO.File.ReadAllLines(filename);
@@ -91,26 +105,19 @@ public class Program
                 }
             }
 
-            if (option == 3) //Load
-            {
-                Console.WriteLine("What is the filename?");
-                string filename = Console.ReadLine();
-                string[] lines = System.IO.File.ReadAllLines(filename);
-
-
-            }
-
             if (option == 4) //Save
             {
-
                 Console.WriteLine("What is the filename?");
                 string fileName = Console.ReadLine();
 
+                Journal j = new Journal();
 
-                Entry _entries = new Entry();
                 using (StreamWriter outputFile = new StreamWriter(fileName))
                 {
-                    outputFile.WriteLine(_entries);
+                    foreach (var entry in j.Entries)
+                    {
+                        outputFile.WriteLine($"{entry.Question}, {entry.Response}, {entry.Date}");
+                    }
                 }
             }
 
@@ -120,7 +127,7 @@ public class Program
                 i = 1;
             }
 
-            if (option >5 || option <1) //Correct Number
+            if (option > 5 || option < 1) //Correct Number
             {
                 Console.WriteLine("\n Type a correct option");
             }
