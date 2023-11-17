@@ -1,8 +1,16 @@
-using System;
-
-public class Word
+class Word
 {
-    public string _chosenWord;
-    public string _hiddenWord;
+    public string Text { get; }
+    public bool IsHidden { get; private set; }
 
+    public Word(string text)
+    {
+        Text = text;
+        IsHidden = false;
+    }
+
+    public void Hide()
+    {
+        IsHidden = true;
+    }
 }

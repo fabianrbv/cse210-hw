@@ -1,13 +1,38 @@
-using System;
-
-public class Reference
+class Reference
 {
-    public string _book;
-    public string _chapter;
-    public string _verse;
+    private string book;
+    private int chapter;
+    private int startVerse;
+    private int endVerse;
 
-    public void Display()
+    public Reference(string reference)
     {
-        Console.WriteLine($"{_book} {_chapter}:{_verse}");
+        string[] parts = reference.Split(' ', ':', '-');
+
+        book = parts[0];
+        chapter = int.Parse(parts[1]);
+
+        if (parts.Length == 3)
+        {
+            startVerse = int.Parse(parts[2]);
+            endVerse = startVerse;
+        }
+        else if (parts.Length == 5)
+        {
+            startVerse = int.Parse(parts[2]);
+            endVerse = int.Parse(parts[4]);
+        }
+    }
+
+    public override string ToString()
+    {
+        if (startVerse == endVerse)
+        {
+            return $"{book} {chapter}:{startVerse}";
+        }
+        else
+        {
+            return $"{book} {chapter}:{startVerse}-{endVerse}";
+        }
     }
 }

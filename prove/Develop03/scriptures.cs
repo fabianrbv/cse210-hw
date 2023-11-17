@@ -1,19 +1,49 @@
-using System;
-
-public class Scripture
+class Scripture
 {
-    public List<string> _scripture = new List<string>{
-        "For ", "God ", "so ", "loved ", "the ", "world, ", "that ", "he ", "gave ", 
-        "his ", "only ", "begotten ", "Son, ", "\nthat ", "whosoever ", "believeth ", 
-        "in ", "him ", "should ", "not ", "perish, ", "but ", "have ", "everlasting ", 
-        "life."
-    };
+    private string reference;
+    private List<Word> words;
 
-    public void Display()
+    public Scripture(string reference, string text)
     {
-        foreach (string elemento in _scripture)
+        this.reference = reference;
+        this.words = text.Split(' ').Select(word => new Word(word)).ToList();
+    }
+
+    public string GetReference()
+    {
+        return reference;
+    }
+
+    public string GetDisplayText()
+    {
+        return string.Join(" ", words.Select(word => word.IsHidden ? "___" : word.Text));
+    }
+
+    public void HideRandomWords()
+    {
+        Random random = new Random();
+        List<int> selectedIndices = new List<int>();
+
+        int availableWordsCount = words.Count(w => !w.IsHidden);
+
+        int wordsToHide = random.Next(1, availableWordsCount + 1);
+
+        for (int i = 0; i < wordsToHide; i++)
         {
-            Console.Write(elemento);
+            int index;
+            do
+            {
+                index = random.Next(words.Count);
+            } while (selectedIndices.Contains(index) || words[index].IsHidden);
+
+            selectedIndices.Add(index);
+            words[index].Hide();
         }
+    }
+
+
+    public bool HasHiddenWords()
+    {
+        return words.Any(w => !w.IsHidden);
     }
 }
