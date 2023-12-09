@@ -6,12 +6,13 @@ Console.WriteLine("Choose an activity:");
 Console.WriteLine("1. Breathing Activity");
 Console.WriteLine("2. Reflection Activity");
 Console.WriteLine("3. Listing Activity");
+Console.WriteLine("4. SquatsActivity");
 
 int choice;
 do
 {
-    Console.Write("Enter your choice (1-3): ");
-} while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 3);
+    Console.Write("Enter your choice (1-4): ");
+} while (!int.TryParse(Console.ReadLine(), out choice) || choice < 1 || choice > 4);
 
 int duration;
 do
@@ -30,6 +31,9 @@ switch (choice)
         break;
     case 3:
         activity = new ListingActivity(duration);
+        break;
+    case 4:
+        activity = new SquatsActivity(duration);
         break;
     default:
         throw new NotImplementedException();
