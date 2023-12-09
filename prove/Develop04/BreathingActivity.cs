@@ -1,4 +1,3 @@
-// Clase para la actividad de Respiración
 public class BreathingActivity : MindfulnessActivity
 {
     public BreathingActivity(int duration) : base(duration) { }

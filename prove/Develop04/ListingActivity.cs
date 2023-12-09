@@ -1,11 +1,9 @@
-// Clase para la actividad de Enumeración
 public class ListingActivity : MindfulnessActivity
 {
     private string[] prompts = {
         "Who are people that you appreciate?",
         "What are personal strengths of yours?",
         "Who are people that you have helped this week?",
-        // Add more prompts as needed
     };
 
     public ListingActivity(int duration) : base(duration) { }

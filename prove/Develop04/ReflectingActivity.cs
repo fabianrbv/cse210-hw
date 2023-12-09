@@ -1,4 +1,3 @@
-// Clase para la actividad de Reflexión
 public class ReflectionActivity : MindfulnessActivity
 {
     private string[] prompts = {
@@ -11,7 +10,6 @@ public class ReflectionActivity : MindfulnessActivity
     private string[] questions = {
         "Why was this experience meaningful to you?",
         "Have you ever done anything like this before?",
-        // Add more questions as needed
     };
 
     public ReflectionActivity(int duration) : base(duration) { }
