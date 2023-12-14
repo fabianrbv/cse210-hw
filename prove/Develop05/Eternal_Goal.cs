@@ -1,7 +1,15 @@
-using System;
-
-public class Eternal_Goal : Goal
-
+public class EternalGoal : Goal
 {
-    
+    public EternalGoal(string title, string description, int points) : base(title, description, points) { }
+
+    public override void RecordEvent()
+    {
+        // Add points to user's score
+        // ...
+    }
+
+    public override void DisplayGoalStatus()
+    {
+        Console.WriteLine($"[X] {title} ({description})");
+    }
 }
