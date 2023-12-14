@@ -4,7 +4,6 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        // Add points to user's score
         // ...
     }
 

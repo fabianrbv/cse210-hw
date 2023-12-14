@@ -17,12 +17,9 @@ public class ChecklistGoal : Goal
         if (completedTimes == totalTimes)
         {
             isCompleted = true;
-            // Add bonus points to user's score
-            // ...
         }
         else
         {
-            // Add points to user's score
             // ...
         }
     }

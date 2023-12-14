@@ -5,8 +5,6 @@ public class SimpleGoal : Goal
     public override void RecordEvent()
     {
         isCompleted = true;
-        // Add points to user's score
-        // ...
     }
 
     public override void DisplayGoalStatus()
