@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-// Clase base para todas las habilidades
 class Skill
 {
     public string Name { get; set; }
     public int Power { get; set; }
 }
 
-// Clase adicional para representar hechizos
 class Spell : Skill
 {
     public Spell(string name, int power) 
@@ -18,7 +16,6 @@ class Spell : Skill
     }
 }
 
-// Clase base para los diferentes tipos de personajes
 class Character
 {
     public string Name { get; set; }
@@ -48,7 +45,6 @@ class Character
     }
 }
 
-// Clases derivadas para diferentes tipos de personajes
 class Warrior : Character
 {
     public Warrior(string name) : base(name, 120)
@@ -82,7 +78,6 @@ class Dragon : Character
     }
 }
 
-// Clase para gestionar los combates
 class Battle
 {
     public void StartBattle(Character player, Character enemy)
@@ -90,17 +85,16 @@ class Battle
         Console.WriteLine($"Battle between {player.Name} and {enemy.Name} starts!");
         while (player.Health > 0 && enemy.Health > 0)
         {
-            player.Attack(enemy, player.Skills[0]); // Player attacks
+            player.Attack(enemy, player.Skills[0]); 
             if (enemy.Health > 0)
             {
-                enemy.Attack(player, enemy.Skills[0]); // Enemy attacks if it's still alive
+                enemy.Attack(player, enemy.Skills[0]);
             }
         }
         Console.WriteLine("Battle ends!");
     }
 }
 
-// Clase principal
 class Program
 {
     static void Main()
